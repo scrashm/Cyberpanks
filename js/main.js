@@ -23,7 +23,7 @@
       category: "Футболка",
       price: "4 290 ₽",
       sizes: "S, M, L, XL",
-      image: "https://images.unsplash.com/photo-1576566588028-4147f384cdf1?w=800&q=80",
+      image: "assets/images/ptitsa.png",
       desc: "Лимитированный принт «Wave» на груди. Шелкография, стойкие пигменты. Тираж 200 штук.",
     },
     "hoodie-grey": {

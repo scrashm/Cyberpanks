@@ -426,7 +426,7 @@ ul {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../assets/images/catalog-background.png") center / cover no-repeat;
+  background: url("../assets/images/site-background.png") center / cover no-repeat;
   opacity: 0.45;
   pointer-events: none;
 }
