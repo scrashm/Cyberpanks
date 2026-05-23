@@ -1,4 +1,4 @@
-/* ── Variables ── */
+﻿/* -- Variables -- */
 :root {
   --bg: #0a0a0a;
   --bg-elevated: #121212;
@@ -8,14 +8,14 @@
   --accent: #e8ff47;
   --accent-dim: rgba(232, 255, 71, 0.15);
   --border: rgba(255, 255, 255, 0.08);
-  /* См. fonts.css — переменные --font-logo, --font-heading, --font-body */
+  /* ��. fonts.css � ���������� --font-logo, --font-heading, --font-body */
   --max-width: 1200px;
   --header-h: 72px;
   --radius: 4px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Reset ── */
+/* -- Reset -- */
 *,
 *::before,
 *::after {
@@ -59,7 +59,7 @@ ul {
   list-style: none;
 }
 
-/* ── Layout ── */
+/* -- Layout -- */
 .container {
   width: 100%;
   max-width: var(--max-width);
@@ -95,7 +95,7 @@ ul {
   letter-spacing: -0.02em;
 }
 
-/* ── Header ── */
+/* -- Header -- */
 .header {
   position: fixed;
   top: 0;
@@ -210,7 +210,7 @@ ul {
   font-size: 0.9375rem;
 }
 
-/* ── Buttons ── */
+/* -- Buttons -- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -253,7 +253,7 @@ ul {
   width: 100%;
 }
 
-/* ── Hero ── */
+/* -- Hero -- */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -344,7 +344,7 @@ ul {
   50% { transform: translateX(-50%) translateY(8px); }
 }
 
-/* ── About ── */
+/* -- About -- */
 .about {
   position: relative;
   padding: 100px 0;
@@ -432,7 +432,7 @@ ul {
   color: var(--text-muted);
 }
 
-/* ── Catalog ── */
+/* -- Catalog -- */
 .catalog {
   position: relative;
   padding: 100px 0;
@@ -546,10 +546,10 @@ ul {
   background-image: url("../assets/images/canser.png");
 }
 .product-card__image--5 {
-  background-image: url("https://images.unsplash.com/photo-1618354691373-d851c5c3f990?w=600&q=80");
+  background-image: url("../assets/images/street.png");
 }
 .product-card__image--6 {
-  background-image: url("https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80");
+  background-image: url("../assets/images/limited-edition.png");
 }
 
 .product-card__badge {
@@ -594,7 +594,7 @@ ul {
   margin-bottom: 16px;
 }
 
-/* ── Contact ── */
+/* -- Contact -- */
 .contact {
   padding: 100px 0 0;
 }
@@ -617,7 +617,7 @@ ul {
   letter-spacing: 0.04em;
 }
 
-/* ── Footer ── */
+/* -- Footer -- */
 .footer {
   border-top: 1px solid var(--border);
   padding: 32px 0;
@@ -644,7 +644,7 @@ ul {
   color: var(--text-muted);
 }
 
-/* ── Image lightbox (zoom) ── */
+/* -- Image lightbox (zoom) -- */
 .image-lightbox {
   position: fixed;
   inset: 0;
@@ -719,7 +719,7 @@ ul {
   text-align: center;
 }
 
-/* ── Modal ── */
+/* -- Modal -- */
 .modal {
   position: fixed;
   inset: 0;
@@ -838,7 +838,7 @@ ul {
   font-weight: 500;
 }
 
-/* ── Reveal animations ── */
+/* -- Reveal animations -- */
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -850,7 +850,7 @@ ul {
   transform: translateY(0);
 }
 
-/* ── Focus visible ── */
+/* -- Focus visible -- */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
