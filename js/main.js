@@ -19,7 +19,7 @@
       desc: "Чёрная футболка с принтом «УЧАСТКОВЫЙ РАЗБЕРЁТСЯ» и надписью КИБЕРПАНКИ. 100% хлопок.",
     },
     "graphic-wave": {
-      title: "Graphic «Wave»",
+      title: "Ptitsa short",
       category: "Футболка",
       price: "4 290 ₽",
       sizes: "S, M, L, XL",
