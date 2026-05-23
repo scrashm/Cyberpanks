@@ -67,6 +67,7 @@
   const ZOOM_MAX = 4;
   const ZOOM_STEP = 0.12;
   let imageZoom = 1;
+  let imageRotate = 0;
 
   /* Header scroll state */
   function onScroll() {
@@ -152,15 +153,16 @@
   });
 
   /* Image lightbox with wheel zoom */
-  function applyImageZoom() {
-    imageLightboxImg.style.transform = `scale(${imageZoom})`;
+  function applyImageTransform() {
+    imageLightboxImg.style.transform = `scale(${imageZoom}) rotate(${imageRotate}deg)`;
   }
 
   function openImageLightbox(src, alt) {
     imageLightboxImg.src = src;
     imageLightboxImg.alt = alt;
     imageZoom = 1;
-    applyImageZoom();
+    imageRotate = 0;
+    applyImageTransform();
     imageLightbox.hidden = false;
     document.body.style.overflow = "hidden";
     imageLightbox.querySelector(".image-lightbox__close").focus();
@@ -170,8 +172,15 @@
     imageLightbox.hidden = true;
     imageLightboxImg.src = "";
     imageZoom = 1;
-    applyImageZoom();
+    imageRotate = 0;
+    applyImageTransform();
     if (modal.hidden) document.body.style.overflow = "";
+  }
+
+  function resetImageView() {
+    imageZoom = 1;
+    imageRotate = 0;
+    applyImageTransform();
   }
 
   document.querySelectorAll("[data-zoom]").forEach((btn) => {
@@ -190,17 +199,47 @@
       e.preventDefault();
       const delta = e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP;
       imageZoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, imageZoom + delta));
-      applyImageZoom();
+      applyImageTransform();
     },
     { passive: false }
   );
 
+  imageLightbox.querySelectorAll("[data-rotate]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const delta = Number(btn.getAttribute("data-rotate")) || 0;
+      imageRotate = (imageRotate + delta) % 360;
+      applyImageTransform();
+    });
+  });
+
+  imageLightbox.querySelectorAll("[data-reset-view]").forEach((btn) => {
+    btn.addEventListener("click", resetImageView);
+  });
+
   document.addEventListener("keydown", (e) => {
-    if (e.key !== "Escape") return;
-    if (!imageLightbox.hidden) {
-      closeImageLightbox();
+    if (e.key === "Escape") {
+      if (!imageLightbox.hidden) {
+        closeImageLightbox();
+        return;
+      }
+      if (!modal.hidden) closeModal();
       return;
     }
-    if (!modal.hidden) closeModal();
+
+    if (imageLightbox.hidden) return;
+    if (e.key === "q" || e.key === "Q" || e.key === "й" || e.key === "Й") {
+      imageRotate = (imageRotate - 90) % 360;
+      applyImageTransform();
+      return;
+    }
+    if (e.key === "e" || e.key === "E" || e.key === "у" || e.key === "У") {
+      imageRotate = (imageRotate + 90) % 360;
+      applyImageTransform();
+      return;
+    }
+    if (e.key === "0") {
+      resetImageView();
+      return;
+    }
   });
 })();

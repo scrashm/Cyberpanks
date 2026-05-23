@@ -180,10 +180,15 @@
   <div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Просмотр фото товара" hidden>
     <div class="image-lightbox__backdrop" data-close-zoom></div>
     <button type="button" class="image-lightbox__close" aria-label="Закрыть" data-close-zoom>&times;</button>
+    <div class="image-lightbox__controls" aria-label="Управление изображением">
+      <button type="button" class="btn btn--outline image-lightbox__control" data-rotate="-90" aria-label="Повернуть влево (Q)">⟲</button>
+      <button type="button" class="btn btn--outline image-lightbox__control" data-rotate="90" aria-label="Повернуть вправо (E)">⟳</button>
+      <button type="button" class="btn btn--outline image-lightbox__control" data-reset-view aria-label="Сбросить вид (0)">Reset</button>
+    </div>
     <div class="image-lightbox__viewport" id="image-lightbox-viewport">
       <img class="image-lightbox__img" id="image-lightbox-img" src="" alt="">
     </div>
-    <p class="image-lightbox__hint">Колесо мыши — приближение · Esc — закрыть</p>
+    <p class="image-lightbox__hint">Колесо мыши — приближение · Q/E — поворот · 0 — сброс · Esc — закрыть</p>
   </div>
 
   <div class="modal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>

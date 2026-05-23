@@ -684,6 +684,29 @@ ul {
   color: var(--text);
 }
 
+.image-lightbox__controls {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+}
+
+.image-lightbox__control {
+  width: auto;
+  height: 44px;
+  padding: 0 14px;
+  line-height: 44px;
+  border: 1px solid var(--border);
+  background: rgba(18, 18, 18, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.image-lightbox__control:hover {
+  border-color: rgba(232, 255, 71, 0.35);
+}
+
 .image-lightbox__viewport {
   position: relative;
   z-index: 1;
