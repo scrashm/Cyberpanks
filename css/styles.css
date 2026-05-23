@@ -8,8 +8,7 @@
   --accent: #e8ff47;
   --accent-dim: rgba(232, 255, 71, 0.15);
   --border: rgba(255, 255, 255, 0.08);
-  --font-display: "Syne", sans-serif;
-  --font-body: "Manrope", system-ui, sans-serif;
+  /* См. fonts.css — переменные --font-logo, --font-heading, --font-body */
   --max-width: 1200px;
   --header-h: 72px;
   --radius: 4px;
@@ -89,7 +88,7 @@ ul {
 }
 
 .section-title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 1.1;
@@ -119,10 +118,10 @@ ul {
 }
 
 .logo {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-family: var(--font-logo);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   transition: color var(--transition);
 }
 
@@ -305,11 +304,11 @@ ul {
 }
 
 .hero__title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 9vw, 5.5rem);
-  font-weight: 800;
+  font-family: var(--font-logo);
+  font-size: clamp(1.75rem, 8vw, 4.5rem);
+  font-weight: 400;
   line-height: 0.95;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   margin-bottom: 24px;
   max-width: 100%;
   overflow-wrap: break-word;
@@ -393,7 +392,7 @@ ul {
 }
 
 .values__num {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--accent);
@@ -403,7 +402,7 @@ ul {
 }
 
 .values__title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 8px;
@@ -513,7 +512,7 @@ ul {
 }
 
 .product-card__name {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.125rem;
   font-weight: 700;
   margin: 4px 0 8px;
@@ -562,9 +561,9 @@ ul {
 }
 
 .footer__logo {
-  font-family: var(--font-display);
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-family: var(--font-logo);
+  font-weight: 400;
+  letter-spacing: 0.04em;
 }
 
 .footer__copy {
@@ -660,7 +659,7 @@ ul {
 }
 
 .modal__title {
-  font-family: var(--font-display);
+  font-family: var(--font-heading);
   font-size: 1.75rem;
   font-weight: 700;
   margin: 8px 0;

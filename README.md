@@ -20,8 +20,11 @@ npx serve .
 
 ```
 index.html      — разметка
+css/fonts.css   — шрифты (логотип, заголовки, текст)
 css/styles.css  — стили
-js/main.js      — навигация, модалка, форма
+assets/fonts/   — файлы шрифта CyberSiberia
+js/main.js      — навигация, модалка
+FONTS.md        — гайд по смене шрифтов
 TZ.md           — техническое задание
 ```
 

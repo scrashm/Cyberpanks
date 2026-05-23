@@ -1,0 +1,27 @@
+/**
+ * Шрифты сайта — меняйте переменные ниже.
+ * Подробный гайд: FONTS.md
+ */
+
+/* ── Логотип: CyberSiberia (кастомный) ── */
+@font-face {
+  font-family: "CyberSiberia";
+  src:
+    url("../assets/fonts/cybersiberia.woff2") format("woff2"),
+    url("../assets/fonts/cybersiberia.woff") format("woff"),
+    url("../assets/fonts/cybersiberia.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Логотип и крупное имя бренда (hero, шапка, подвал) */
+  --font-logo: "CyberSiberia", "Syne", sans-serif;
+
+  /* Заголовки секций, карточек, модалки */
+  --font-heading: "Syne", sans-serif;
+
+  /* Основной текст */
+  --font-body: "Manrope", system-ui, sans-serif;
+}

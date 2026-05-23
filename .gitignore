@@ -1,3 +1,11 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Временные файлы конвертации шрифтов (скрипт: tools/convert-font.js)
+tools/fonteditor-core/
+tools/package/
+tools/*.tgz
+tools/svg2ttf-cli.js
+tools/fec.tgz
+tools/xmldom.tgz
