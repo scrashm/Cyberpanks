@@ -119,9 +119,10 @@ ul {
 
 .logo {
   font-family: var(--font-logo);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
   transition: color var(--transition);
 }
 
@@ -305,13 +306,13 @@ ul {
 
 .hero__title {
   font-family: var(--font-logo);
-  font-size: clamp(1.75rem, 8vw, 4.5rem);
+  font-size: clamp(1.35rem, 6.5vw, 3.25rem);
   font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: 0.02em;
+  line-height: 1;
+  letter-spacing: 0.01em;
   margin-bottom: 24px;
   max-width: 100%;
-  overflow-wrap: break-word;
+  white-space: nowrap;
 }
 
 .hero__tagline {
@@ -415,8 +416,36 @@ ul {
 
 /* ── Catalog ── */
 .catalog {
+  position: relative;
   padding: 100px 0;
   background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.catalog::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/images/catalog-background.png") center / cover no-repeat;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.catalog::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.88) 0%,
+    rgba(10, 10, 10, 0.94) 100%
+  );
+  pointer-events: none;
+}
+
+.catalog > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .catalog__header {
@@ -487,9 +516,6 @@ ul {
 
 .product-card__image--zoom .product-card__badge {
   pointer-events: none;
-}
-.product-card__image--2 {
-  background-image: url("https://images.unsplash.com/photo-1583743814966-6a5c9169b7a4?w=600&q=80");
 }
 .product-card__image--3 {
   background-image: url("https://images.unsplash.com/photo-1576566588028-4147f384cdf1?w=600&q=80");
@@ -585,8 +611,10 @@ ul {
 
 .footer__logo {
   font-family: var(--font-logo);
+  font-size: 0.95rem;
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .footer__copy {

@@ -10,13 +10,13 @@
       image: "assets/images/cyber-short-purple.png",
       desc: "Чёрная футболка с принтом «КИБЕРПАНК» лавандового оттенка. 100% хлопок, прямой крой.",
     },
-    "oversize-white": {
-      title: "Oversize White",
+    "y4astkoviy-short": {
+      title: "Y4astkoviy short",
       category: "Футболка",
-      price: "3 790 ₽",
+      price: "1 550 ₽",
       sizes: "S, M, L, XL",
-      image: "https://images.unsplash.com/photo-1583743814966-6a5c9169b7a4?w=800&q=80",
-      desc: "Свободный oversize-крой, мягкий хлопок. Спущенное плечо и удлинённый подол — городской силуэт.",
+      image: "assets/images/y4astkoviy-short.png",
+      desc: "Чёрная футболка с принтом «УЧАСТКОВЫЙ РАЗБЕРЁТСЯ» и надписью КИБЕРПАНКИ. 100% хлопок.",
     },
     "graphic-wave": {
       title: "Graphic «Wave»",
