@@ -2,13 +2,13 @@
   "use strict";
 
   const PRODUCTS = {
-    "classic-black": {
-      title: "Classic Black",
+    "cyber-short-purple": {
+      title: "Cyber short purple",
       category: "Футболка",
-      price: "3 490 ₽",
+      price: "1 550 ₽",
       sizes: "XS, S, M, L, XL",
-      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80",
-      desc: "Базовая футболка из плотного хлопка 240 г/м². Прямой крой, круглый вырез. Идеальна как основа гардероба.",
+      image: "assets/images/cyber-short-purple.png",
+      desc: "Чёрная футболка с принтом «КИБЕРПАНК» лавандового оттенка. 100% хлопок, прямой крой.",
     },
     "oversize-white": {
       title: "Oversize White",
@@ -59,6 +59,14 @@
   const sections = document.querySelectorAll("section[id]");
   const reveals = document.querySelectorAll(".reveal");
   const modal = document.getElementById("product-modal");
+  const imageLightbox = document.getElementById("image-lightbox");
+  const imageLightboxImg = document.getElementById("image-lightbox-img");
+  const imageLightboxViewport = document.getElementById("image-lightbox-viewport");
+
+  const ZOOM_MIN = 1;
+  const ZOOM_MAX = 4;
+  const ZOOM_STEP = 0.12;
+  let imageZoom = 1;
 
   /* Header scroll state */
   function onScroll() {
@@ -143,7 +151,56 @@
     el.addEventListener("click", closeModal);
   });
 
+  /* Image lightbox with wheel zoom */
+  function applyImageZoom() {
+    imageLightboxImg.style.transform = `scale(${imageZoom})`;
+  }
+
+  function openImageLightbox(src, alt) {
+    imageLightboxImg.src = src;
+    imageLightboxImg.alt = alt;
+    imageZoom = 1;
+    applyImageZoom();
+    imageLightbox.hidden = false;
+    document.body.style.overflow = "hidden";
+    imageLightbox.querySelector(".image-lightbox__close").focus();
+  }
+
+  function closeImageLightbox() {
+    imageLightbox.hidden = true;
+    imageLightboxImg.src = "";
+    imageZoom = 1;
+    applyImageZoom();
+    if (modal.hidden) document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-zoom]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      openImageLightbox(btn.dataset.zoom, btn.dataset.zoomAlt || "");
+    });
+  });
+
+  imageLightbox.querySelectorAll("[data-close-zoom]").forEach((el) => {
+    el.addEventListener("click", closeImageLightbox);
+  });
+
+  imageLightboxViewport.addEventListener(
+    "wheel",
+    (e) => {
+      e.preventDefault();
+      const delta = e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP;
+      imageZoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, imageZoom + delta));
+      applyImageZoom();
+    },
+    { passive: false }
+  );
+
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !modal.hidden) closeModal();
+    if (e.key !== "Escape") return;
+    if (!imageLightbox.hidden) {
+      closeImageLightbox();
+      return;
+    }
+    if (!modal.hidden) closeModal();
   });
 })();

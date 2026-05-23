@@ -462,8 +462,31 @@ ul {
   background-position: center;
 }
 
-.product-card__image--1 {
-  background-image: url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80");
+.product-card__image--zoom {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: var(--bg-card);
+  cursor: zoom-in;
+  display: block;
+  overflow: hidden;
+  transition: opacity var(--transition);
+}
+
+.product-card__image--zoom:hover {
+  opacity: 0.92;
+}
+
+.product-card__image--zoom img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.product-card__image--zoom .product-card__badge {
+  pointer-events: none;
 }
 .product-card__image--2 {
   background-image: url("https://images.unsplash.com/photo-1583743814966-6a5c9169b7a4?w=600&q=80");
@@ -569,6 +592,81 @@ ul {
 .footer__copy {
   font-size: 0.875rem;
   color: var(--text-muted);
+}
+
+/* ── Image lightbox (zoom) ── */
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 24px;
+}
+
+.image-lightbox[hidden] {
+  display: none;
+}
+
+.image-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(6px);
+}
+
+.image-lightbox__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.image-lightbox__close:hover {
+  color: var(--text);
+}
+
+.image-lightbox__viewport {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: 100%;
+  max-width: min(92vw, 800px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.image-lightbox__img {
+  max-width: 100%;
+  max-height: min(78vh, 900px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.image-lightbox__hint {
+  position: relative;
+  z-index: 1;
+  margin-top: 16px;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-align: center;
 }
 
 /* ── Modal ── */
