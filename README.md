@@ -33,20 +33,20 @@ TZ.md           — техническое задание
 
 ## Деплой на GitHub Pages
 
-1. Создайте репозиторий на [github.com/new](https://github.com/new) (например `cyberpanks`).
-2. В корне проекта выполните (подставьте свой логин):
+Репозиторий: [scrashm/Cyberpanks](https://github.com/scrashm/Cyberpanks)
 
-```bash
-git init -b main
-git add .
-git commit -m "Initial commit: Cyberpanks landing"
-git remote add origin https://github.com/ВАШ_ЛОГИН/cyberpanks.git
-git push -u origin main
-```
+### Обязательно перед первым деплоем
 
-3. На GitHub: **Settings → Pages → Build and deployment** → Source: **GitHub Actions**.
-4. После успешного workflow сайт откроется по адресу:
+Если workflow падает на шаге **Setup Pages** (≈8 секунд, красный крестик):
 
-`https://ВАШ_ЛОГИН.github.io/cyberpanks/`
+1. Откройте **Settings → Pages** в репозитории.
+2. В блоке **Build and deployment** выберите **Source: GitHub Actions** (не «Deploy from a branch»).
+3. Сохраните, затем **Actions → Deploy to GitHub Pages → Run workflow** (или сделайте любой `git push`).
 
-Повторные правки — просто `git push`; деплой запустится автоматически.
+Без этого шага Pages в репозитории не создан, и деплой всегда будет падать.
+
+### Адрес сайта
+
+`https://scrashm.github.io/Cyberpanks/`
+
+Повторные правки — `git push`; деплой запустится автоматически.
