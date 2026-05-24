@@ -77,6 +77,15 @@ ul {
   position: relative;
 }
 
+.section::before,
+.section::after {
+  transition: opacity 1s ease;
+}
+
+.section:not(.section--active)::before {
+  opacity: 0 !important;
+}
+
 .section-label {
   display: block;
   font-size: 0.75rem;
@@ -268,8 +277,14 @@ ul {
   inset: 0;
   background:
     url("https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=1920&q=80") center / cover no-repeat;
+  opacity: 0;
+  transition: opacity 1.2s ease;
   transform: scale(1.05);
   animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+.hero.section--active .hero__bg {
+  opacity: 1;
 }
 
 @keyframes heroZoom {
@@ -357,6 +372,7 @@ ul {
   inset: 0;
   background: url("../assets/images/about-background.png") center / cover no-repeat;
   opacity: 0.6;
+  filter: saturate(1.05) contrast(1.05);
   pointer-events: none;
 }
 
@@ -364,11 +380,9 @@ ul {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 10, 10, 0.62) 0%,
-    rgba(10, 10, 10, 0.88) 100%
-  );
+  background:
+    linear-gradient(180deg, var(--bg) 0%, rgba(10, 10, 10, 0.55) 18%, rgba(10, 10, 10, 0.72) 82%, var(--bg) 100%),
+    radial-gradient(70% 60% at 50% 40%, rgba(232, 255, 71, 0.08) 0%, rgba(10, 10, 10, 0) 60%);
   pointer-events: none;
 }
 
@@ -446,6 +460,7 @@ ul {
   inset: 0;
   background: url("../assets/images/site-background.png") center / cover no-repeat;
   opacity: 0.7;
+  filter: saturate(1.05) contrast(1.05);
   pointer-events: none;
 }
 
@@ -453,11 +468,9 @@ ul {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 10, 10, 0.55) 0%,
-    rgba(10, 10, 10, 0.78) 100%
-  );
+  background:
+    linear-gradient(180deg, var(--bg) 0%, rgba(10, 10, 10, 0.52) 16%, rgba(10, 10, 10, 0.76) 84%, var(--bg) 100%),
+    radial-gradient(70% 60% at 50% 40%, rgba(232, 255, 71, 0.06) 0%, rgba(10, 10, 10, 0) 60%);
   pointer-events: none;
 }
 
@@ -718,6 +731,15 @@ ul {
   justify-content: center;
   overflow: hidden;
   cursor: zoom-in;
+  touch-action: none;
+}
+
+.image-lightbox__viewport--can-pan {
+  cursor: grab;
+}
+
+.image-lightbox__viewport--can-pan:active {
+  cursor: grabbing;
 }
 
 .image-lightbox__img {

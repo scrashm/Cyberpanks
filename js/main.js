@@ -68,6 +68,13 @@
   const ZOOM_STEP = 0.12;
   let imageZoom = 1;
   let imageRotate = 0;
+  let imagePanX = 0;
+  let imagePanY = 0;
+  let isPanning = false;
+  let panStartX = 0;
+  let panStartY = 0;
+  let panOriginX = 0;
+  let panOriginY = 0;
 
   /* Header scroll state */
   function onScroll() {
@@ -81,6 +88,7 @@
   const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
+        entry.target.classList.toggle("section--active", entry.isIntersecting);
         if (!entry.isIntersecting) return;
         const id = entry.target.id;
         navLinks.forEach((link) => {
@@ -154,7 +162,8 @@
 
   /* Image lightbox with wheel zoom */
   function applyImageTransform() {
-    imageLightboxImg.style.transform = `scale(${imageZoom}) rotate(${imageRotate}deg)`;
+    imageLightboxImg.style.transform = `translate(${imagePanX}px, ${imagePanY}px) scale(${imageZoom}) rotate(${imageRotate}deg)`;
+    imageLightboxViewport.classList.toggle("image-lightbox__viewport--can-pan", imageZoom > 1.01);
   }
 
   function openImageLightbox(src, alt) {
@@ -162,6 +171,8 @@
     imageLightboxImg.alt = alt;
     imageZoom = 1;
     imageRotate = 0;
+    imagePanX = 0;
+    imagePanY = 0;
     applyImageTransform();
     imageLightbox.hidden = false;
     document.body.style.overflow = "hidden";
@@ -173,6 +184,9 @@
     imageLightboxImg.src = "";
     imageZoom = 1;
     imageRotate = 0;
+    imagePanX = 0;
+    imagePanY = 0;
+    isPanning = false;
     applyImageTransform();
     if (modal.hidden) document.body.style.overflow = "";
   }
@@ -180,6 +194,8 @@
   function resetImageView() {
     imageZoom = 1;
     imageRotate = 0;
+    imagePanX = 0;
+    imagePanY = 0;
     applyImageTransform();
   }
 
@@ -198,11 +214,46 @@
     (e) => {
       e.preventDefault();
       const delta = e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP;
-      imageZoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, imageZoom + delta));
+      const nextZoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, imageZoom + delta));
+      if (nextZoom === ZOOM_MIN) {
+        imagePanX = 0;
+        imagePanY = 0;
+      }
+      imageZoom = nextZoom;
       applyImageTransform();
     },
     { passive: false }
   );
+
+  imageLightboxViewport.addEventListener("pointerdown", (e) => {
+    if (imageLightbox.hidden) return;
+    if (imageZoom <= 1.01) return;
+    isPanning = true;
+    imageLightboxViewport.setPointerCapture(e.pointerId);
+    panStartX = e.clientX;
+    panStartY = e.clientY;
+    panOriginX = imagePanX;
+    panOriginY = imagePanY;
+    applyImageTransform();
+  });
+
+  imageLightboxViewport.addEventListener("pointermove", (e) => {
+    if (!isPanning) return;
+    const dx = e.clientX - panStartX;
+    const dy = e.clientY - panStartY;
+    imagePanX = panOriginX + dx;
+    imagePanY = panOriginY + dy;
+    applyImageTransform();
+  });
+
+  function stopPan(e) {
+    if (!isPanning) return;
+    isPanning = false;
+    applyImageTransform();
+  }
+
+  imageLightboxViewport.addEventListener("pointerup", stopPan);
+  imageLightboxViewport.addEventListener("pointercancel", stopPan);
 
   imageLightbox.querySelectorAll("[data-rotate]").forEach((btn) => {
     btn.addEventListener("click", () => {
